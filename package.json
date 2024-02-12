@@ -1,5 +1,9 @@
 {
   "name": "CxxTurboModulesGuide",
+  "description": "React Native with Cxx Turbo Native Modules",
+  "author": "<Raul Andrade> <theandraderaul@gmail.com> (https://github.com/andraderaul>)",
+  "license": "MIT",
+  "homepage": "https://github.com/andraderaul/cxx-turbo-modules-guide/#readme",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -32,5 +36,13 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "codegenConfig": {
+    "name": "AppSpecs",
+    "type": "all",
+    "jsSrcsDir": "tm",
+    "android": {
+      "javaPackageName": "com.facebook.fbreact.specs"
+    }
   }
 }
