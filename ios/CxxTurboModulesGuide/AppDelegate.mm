@@ -1,6 +1,12 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
+#import <React/CoreModulesPlugins.h>
+#import <ReactCommon/RCTTurboModuleManager.h>
+#import <NativeSampleModule.h>
+
+@interface AppDelegate () <RCTTurboModuleManagerDelegate> {}
+@end
 
 @implementation AppDelegate
 
@@ -26,6 +32,21 @@
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+- (Class)getModuleClassFromName:(const char *)name {
+  return RCTCoreModulesClassProvider(name);
+}
+
+#pragma mark RCTTurboModuleManagerDelegate
+
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const std::string &)name
+                                                      jsInvoker:(std::shared_ptr<facebook::react::CallInvoker>)jsInvoker
+{
+  if (name == "NativeSampleModule") {
+    return std::make_shared<facebook::react::NativeSampleModule>(jsInvoker);
+  }
+  return nullptr;
 }
 
 @end
